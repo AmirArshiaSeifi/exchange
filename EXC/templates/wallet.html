@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <p>hello {{user.username}}</p>
+        <p>your wallet address: {{uW.addr}}</p>
+        <p>USDT: {{uW.USDT_balance}}</p>
+        <p>ETH: {{uW.ETH_balance}}</p>
+        <p>XPR: {{uW.XPR_balance}}</p>
+        <p>SOL: {{uW.SOL_balance}}</p>
+        <p>BTC: {{uW.BTC_balance}}</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="number" placeholder="charge" name="charge">
+            <select name="crc" required>
+                <option value="" disabled selected>please selelct</option>
+                <option value="USDT">USDT</option>
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+                <option value="XPR">XPR</option>
+                <option value="SOL">ُSOL</option>
+            </select>
+            {{ form1.as_p }}
+            <button type="submit" name="form1">charge</button>
+        </form>
+        <form method="post">
+            {% csrf_token %}
+            <input type="number" placeholder="change" name="change">
+            <label>from:</label>
+            <select name="crcf" required>
+                <option value="" disabled selected>please selelct</option>
+                <option value="USDT">USDT</option>
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+                <option value="XPR">XPR</option>
+                <option value="SOL">ُSOL</option>
+            </select>
+            <label>to:</label>
+            <select name="crct" required>
+                <option value="" disabled selected>please selelct</option>
+                <option value="USDT">USDT</option>
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+                <option value="XPR">XPR</option>
+                <option value="SOL">ُSOL</option>
+            </select>
+            {{ form2.as_p }}
+            <button type="submit" name="form2">change</button>
+        </form>
+        <form method="post">
+            {% csrf_token %}
+            <input type="number" placeholder="amount" name="amount">
+            <input type="number" placeholder="address" name="address">
+            <label>from:</label>
+            <select name="crcs" required>
+                <option value="" disabled selected>please selelct</option>
+                <option value="USDT">USDT</option>
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+                <option value="XPR">XPR</option>
+                <option value="SOL">ُSOL</option>
+            </select>
+            <button type="submit" name="form3">send</button>
+        </form>
+        <table border="1" style="padding: 10px;">
+            <tr>
+                <td>USDT: {{p.USDT}}</td>
+                <td>BTC: {{p.BTC}}</td>
+                <td>ETH: {{p.ETH}}</td>
+                <td>XPR: {{p.XPR}}</td>
+                <td>SOL: {{p.SOL}}</td>
+            </tr>
+        </table>
+    {% endif %}
+</body>
+</html>
